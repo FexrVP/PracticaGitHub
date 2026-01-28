@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Formulario de práctica</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 640px; margin: auto; }
+    label { display: block; margin-top: 12px; }
+    input, select, textarea { width: 100%; padding: 8px; box-sizing: border-box; margin-top: 4px; }
+    .inline { display: inline-block; width: auto; margin-right: 10px; }
+    button { margin-top: 14px; padding: 10px 16px; }
+  </style>
+</head>
+<body>
+  <h1>Formulario de práctica</h1>
+  <form id="practicaForm" action="#" method="post" enctype="multipart/form-data">
+    <label for="nombre">Nombre completo</label>
+    <input type="text" id="nombre" name="nombre" placeholder="Juan Pérez" required />
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" name="email" placeholder="ejemplo@dominio.com" required />
+    <label for="contrasena">Contraseña</label>
+    <input type="password" id="contrasena" name="contrasena" minlength="6" placeholder="mínimo 6 caracteres" required />
+    <label>Género</label>
+    <label class="inline"><input type="radio" name="genero" value="masculino" checked /> Masculino</label>
+    <label class="inline"><input type="radio" name="genero" value="femenino" /> Femenino</label>
+    <label class="inline"><input type="radio" name="genero" value="otro" /> Otro</label>
+    <label for="pais">País</label>
+    <select id="pais" name="pais" required>
+      <option value="">-- Selecciona --</option>
+      <option value="mexico">México</option>
+      <option value="espana">España</option>
+      <option value="argentina">Argentina</option>
+      <option value="otro">Otro</option>
+    </select>
+    <label for="bio">Breve biografía (opcional)</label>
+    <textarea id="bio" name="bio" rows="4" placeholder="Escribe algo sobre ti..."></textarea>
+    <label for="archivo">Subir archivo (opcional)</label>
+    <input type="file" id="archivo" name="archivo" accept=".jpg,.png,.pdf" />
+    <label><input type="checkbox" id="terminos" name="terminos" required /> Acepto los términos y condiciones</label>
+    <button type="submit">Enviar</button>
+    <button type="reset" style="margin-left:8px;">Limpiar</button>
+  </form>
+  <script>
+    document.getElementById('practicaForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const datos = new FormData(form);
+      const objeto = Object.fromEntries(Array.from(datos.entries()));
+      console.log('Datos del formulario:', objeto);
+      alert('Formulario capturado. Revisa la consola (F12) para ver los datos.');
+    });
+  </script>
+</body>
+</html>
